@@ -1,0 +1,10 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"css.validate": false,
+	"scss.validate": false,
+	"prettier.tabWidth": 3,
+	"prettier.useTabs": false,
+	"tslint.jsEnable": false,
+	"tslint.exclude": ["**/*.js", "node_modules/**/*.ts"],
+	"tslint.ignoreDefinitionFiles": true
+}

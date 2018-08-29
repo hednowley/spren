@@ -11,3 +11,7 @@
 	padding: 4px;
 	font-size: 20px;
 }
+
+.selected {
+	background-color: red
+}

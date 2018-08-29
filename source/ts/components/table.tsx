@@ -30,9 +30,9 @@ class TableComponent extends React.Component<Props> {
 
 const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
 	return {
-		cells: state.cells.map(c => ({
-			coordinate: c.coordinate,
-			value: c.value
+		cells: Object.keys(state.cells).map(key => ({
+			coordinate: state.cells[key].coordinate,
+			value: state.cells[key].value
 		}))
 	};
 };

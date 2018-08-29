@@ -1,0 +1,13 @@
+.table {
+	margin: 20px;
+}
+
+.table-cell {
+	background-color: #252526;
+	color: #CCCCCC;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ccc;
+	padding: 4px;
+	font-size: 20px;
+}

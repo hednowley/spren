@@ -5,7 +5,8 @@ module.exports = {
 	entry: './source/ts/index.tsx',
 	module: {
 		rules: [
-			{ test: /\.(ts|tsx)$/, use: "awesome-typescript-loader" }
+			{ test: /\.(ts|tsx)$/, use: "awesome-typescript-loader" },
+			{ test: /\.css$/, use: ["style-loader", "css-loader"] }
 		]
 	},
 	resolve: {

@@ -1,21 +1,40 @@
 import * as React from "react";
+import { connect, MapStateToProps } from "react-redux";
+import { Store } from "../redux/store";
 
-interface Props {}
+import "../../css/style.css";
+import { Cell } from "./cell";
 
-interface State {
-	value: string;
+interface Props {
+	cells: {
+		coordinate: number[];
+		value: string;
+	}[];
 }
 
-export class Table extends React.Component<Props, State> {
-	constructor(props: Props) {
-		super(props);
-
-		this.state = {
-			value: "a"
-		};
-	}
+class TableComponent extends React.Component<Props> {
 
 	render() {
-		return <div>{this.state.value}</div>;
+		
+		const style: React.CSSProperties = {
+			display: "grid"
+		};
+
+		return (
+			<div style={style} className="table">
+				{this.props.cells.map(c => <Cell coordinate={c.coordinate} value={c.value}/>)}
+			</div>
+		);
 	}
 }
+
+const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
+	return {
+		cells: state.cells.map(c => ({
+			coordinate: c.coordinate,
+			value: c.value
+		}))
+	};
+};
+
+export const Table = connect(mapStateToProps)(TableComponent);

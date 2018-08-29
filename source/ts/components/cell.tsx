@@ -1,21 +1,28 @@
 import * as React from "react";
 import { MapDispatchToProps, connect } from "react-redux";
 import { Store } from "../redux/store";
-import { createNewCellValueAction } from "../redux/actionCreators";
+import { createNewCellValueAction, createToggleSelectCellAction } from "../redux/actionCreators";
 
 interface Props {
 	coordinate: number[];
 	value: string;
+	id: string;
+	selected: boolean
 }
 
 interface DispatchProps {
-	onValueChange: (newValue: string) => void
+	onValueChange: (newValue: string) => void,
+	onSelect: () => void
 }
 
 class CellComponent extends React.Component<Props & DispatchProps> {
 
 	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		this.props.onValueChange(event.target.value);
+	}
+
+	private handleClick = () => {
+		this.props.onSelect();
 	}
 
 	render() {
@@ -25,19 +32,21 @@ class CellComponent extends React.Component<Props & DispatchProps> {
 		};
 
 		return (
-			<input
-				style={style}
-				type="text"
-				className="table-cell"
-				value={this.props.value}
-				onChange={this.handleChange}
-			/>
+			<div onClick={this.handleClick} className="table-cell" style={style}>
+				<input
+					type="text"
+					className={this.props.selected ? "selected" : ""}
+					value={this.props.value}
+					onChange={this.handleChange}
+				/>
+			</div>
 		);
 	}
 }
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, Props> = (dispatch, ownProps) => ({
-	onValueChange: (newValue: string) => dispatch(createNewCellValueAction(ownProps.coordinate, newValue))
+	onValueChange: (newValue: string) => dispatch(createNewCellValueAction(ownProps.coordinate, newValue)),
+	onSelect: () => dispatch(createToggleSelectCellAction(ownProps.id))
 });
 
 export const Cell = connect<{}, DispatchProps, Props, Store>(

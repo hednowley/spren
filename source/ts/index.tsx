@@ -7,12 +7,14 @@ import { reducer } from "./redux/reducer";
 import { Store } from "./redux/store";
 
 const initialStore: Store = {
-	cells: {}
+	cells: {},
+	selected: []
 };
 
 for (let i = 0; i < 10; i++) {
 	for (let j = 0; j < 5; j++) {
 		initialStore.cells[`${i}.${j}`] = {
+			id: `${i}.${j}`,
 			coordinate: [i, j],
 			value: `value_${i}_${j}`
 		};

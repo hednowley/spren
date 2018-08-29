@@ -1,4 +1,4 @@
-import { NewCellValueAction } from "./actions";
+import { NewCellValueAction, ToggleSelectCellAction } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
 export const createNewCellValueAction = (
@@ -8,4 +8,9 @@ export const createNewCellValueAction = (
 	type: ActionTypeKeys.NEW_CELL_VALUE,
 	coordinate: coordinate,
 	newValue: newValue
+});
+
+export const createToggleSelectCellAction = (id: string): ToggleSelectCellAction => ({
+	type: ActionTypeKeys.TOGGLE_SELECT_CELL,
+	id: id
 });

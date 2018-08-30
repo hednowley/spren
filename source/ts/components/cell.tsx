@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MapDispatchToProps, connect } from "react-redux";
+import { MapDispatchToProps, connect, MapStateToProps } from "react-redux";
 import { Store } from "../redux/store";
 import {
 	createNewCellValueAction,
@@ -10,9 +10,12 @@ import {
 } from "../redux/actionCreators";
 
 interface Props {
+	id: string;
+}
+
+interface ReduxProps {
 	coordinate: number[];
 	value: string;
-	id: string;
 	selected: boolean;
 }
 
@@ -28,18 +31,14 @@ interface State {
 	isHovered: boolean;
 }
 
-class CellComponent extends React.Component<Props & DispatchProps, State> {
-	constructor(props: Props & DispatchProps) {
+class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, State> {
+	constructor(props: Props & DispatchProps & ReduxProps) {
 		super(props);
 
 		this.state = {
 			isHovered: false
 		};
 	}
-
-	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		this.props.onValueChange(event.target.value);
-	};
 
 	private handleMouseEnter = () => {
 		this.props.onMouseEnter();
@@ -94,7 +93,16 @@ class CellComponent extends React.Component<Props & DispatchProps, State> {
 	}
 }
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, Props> = (dispatch, ownProps) => ({
+const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownProps) => {
+	const reduxCell = store.Cells[ownProps.id];
+	return {
+		coordinate: reduxCell.coordinate,
+		value: reduxCell.value,
+		selected: store.Selection.Contents.some(id => id == ownProps.id)
+	}
+};
+
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, Props & ReduxProps> = (dispatch, ownProps) => ({
 	onValueChange: (newValue: string) =>
 		dispatch(createNewCellValueAction(ownProps.coordinate, newValue)),
 	onMouseEnter: () => dispatch(createMouseEnterCellAction(ownProps.id)),
@@ -103,7 +111,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, Props> = (dispatch, 
 	onMouseUp: () => dispatch(createMouseUpAction(ownProps.id))
 });
 
-export const Cell = connect<{}, DispatchProps, Props, Store>(
-	null,
+export const Cell = connect<ReduxProps, DispatchProps, Props, Store>(
+	mapStateToProps,
 	mapDispatchToProps
 )(CellComponent);

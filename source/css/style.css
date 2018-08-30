@@ -23,6 +23,7 @@
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
 	width: 100px;
+	height: 21px;
 }
 
 .hovered {

@@ -13,6 +13,7 @@ export interface Selection {
 
 export interface Store {
 	Cells: { [id: string]: Cell };
+	CellIds: string[];
 	Selection: Selection
 	CurrentCell: string,
 	MouseIsDown: boolean

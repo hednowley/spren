@@ -6,13 +6,7 @@ import "../../css/style.css";
 import { Cell } from "./cell";
 
 interface Props {
-	selection: string[];
-	cells: {
-		coordinate: number[];
-		value: string;
-		id: string;
-	}[];
-	hovered: string;
+	cellIds: string[];
 }
 
 class TableComponent extends React.Component<Props> {
@@ -23,14 +17,8 @@ class TableComponent extends React.Component<Props> {
 
 		return (
 			<div style={style} className="table">
-				{this.props.cells.map(c => (
-					<Cell
-						coordinate={c.coordinate}
-						value={c.value}
-						id={c.id}
-						key={c.id}
-						selected={this.props.selection.some(id => id == c.id)}
-					/>
+				{this.props.cellIds.map(id => (
+					<Cell id={id} key={id} />
 				))}
 			</div>
 		);
@@ -39,13 +27,7 @@ class TableComponent extends React.Component<Props> {
 
 const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
 	return {
-		cells: Object.keys(state.Cells).map(key => ({
-			coordinate: state.Cells[key].coordinate,
-			value: state.Cells[key].value,
-			id: key
-		})),
-		selection: state.Selection == null ? [] : state.Selection.Contents,
-		hovered: state.CurrentCell
+		cellIds: state.CellIds
 	};
 };
 

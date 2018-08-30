@@ -1,4 +1,4 @@
-import { NewCellValueAction, ToggleSelectCellAction, HoverCellAction } from "./actions";
+import { NewCellValueAction, MouseEnterCellAction, MouseExitCellAction, MouseDownAction, MouseUpAction } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
 export const createNewCellValueAction = (
@@ -10,13 +10,20 @@ export const createNewCellValueAction = (
 	newValue: newValue
 });
 
-export const createToggleSelectCellAction = (id: string): ToggleSelectCellAction => ({
-	type: ActionTypeKeys.TOGGLE_SELECT_CELL,
+export const createMouseEnterCellAction = (id: string): MouseEnterCellAction => ({
+	type: ActionTypeKeys.MOUSE_ENTER_CELL,
 	id: id
 });
 
-export const createHoverCellAction = (id: string): HoverCellAction => ({
-	type: ActionTypeKeys.HOVER_CELL,
+export const createMouseExitCellAction = (id: string): MouseExitCellAction => ({
+	type: ActionTypeKeys.MOUSE_EXIT_CELL,
 	id: id
-});
+})
 
+export const createMouseDownAction = (id: string): MouseDownAction => ({
+	type: ActionTypeKeys.MOUSE_DOWN,
+})
+
+export const createMouseUpAction = (id: string): MouseUpAction => ({
+	type: ActionTypeKeys.MOUSE_UP,
+})

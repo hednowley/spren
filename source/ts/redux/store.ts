@@ -4,8 +4,16 @@ export interface Cell {
 	value: string;
 }
 
+export interface Selection {
+	Start: string,
+	End: string,
+	Contents: string[],
+	InProgress: boolean
+}
+
 export interface Store {
-	cells: { [id: string]: Cell };
-	selected: string[];
-	hovered: string
+	Cells: { [id: string]: Cell };
+	Selection: Selection
+	CurrentCell: string,
+	MouseIsDown: boolean
 };

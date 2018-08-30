@@ -6,32 +6,32 @@ import "../../css/style.css";
 import { Cell } from "./cell";
 
 interface Props {
-	selected: string[],
+	selection: string[];
 	cells: {
 		coordinate: number[];
 		value: string;
 		id: string;
 	}[];
-	hovered: string
+	hovered: string;
 }
 
 class TableComponent extends React.Component<Props> {
-
 	render() {
-
 		const style: React.CSSProperties = {
 			display: "grid"
 		};
 
 		return (
 			<div style={style} className="table">
-				{this.props.cells.map(c => <Cell
-					coordinate={c.coordinate}
-					value={c.value}
-					id={c.id}
-					key={c.id}
-					selected={this.props.selected.some(id => id == c.id)}
-					hovered={this.props.hovered == c.id} />)}
+				{this.props.cells.map(c => (
+					<Cell
+						coordinate={c.coordinate}
+						value={c.value}
+						id={c.id}
+						key={c.id}
+						selected={this.props.selection.some(id => id == c.id)}
+					/>
+				))}
 			</div>
 		);
 	}
@@ -39,13 +39,13 @@ class TableComponent extends React.Component<Props> {
 
 const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
 	return {
-		cells: Object.keys(state.cells).map(key => ({
-			coordinate: state.cells[key].coordinate,
-			value: state.cells[key].value,
+		cells: Object.keys(state.Cells).map(key => ({
+			coordinate: state.Cells[key].coordinate,
+			value: state.Cells[key].value,
 			id: key
 		})),
-		selected: state.selected,
-		hovered: state.hovered
+		selection: state.Selection == null ? [] : state.Selection.Contents,
+		hovered: state.CurrentCell
 	};
 };
 

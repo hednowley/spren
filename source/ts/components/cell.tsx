@@ -63,14 +63,13 @@ class CellComponent extends React.Component<Props & DispatchProps, State> {
 		this.props.onMouseUp();
 	};
 
-
 	render() {
 		const style: React.CSSProperties = {
 			gridColumn: this.props.coordinate[1] + 1,
 			gridRow: this.props.coordinate[0] + 1
 		};
 
-		let className = "";
+		let className = "table-cell";
 
 		if (this.props.selected) {
 			className += " selected";
@@ -81,17 +80,15 @@ class CellComponent extends React.Component<Props & DispatchProps, State> {
 		}
 
 		return (
-			<div className="table-cell" style={style}>
-				<input
-					type="text"
-					className={className}
-					value={this.props.value}
-					onChange={this.handleChange}
-					onMouseEnter={this.handleMouseEnter}
-					onMouseLeave={this.handleMouseExit}
-					onMouseDown={this.handleMouseDown}
-					onMouseUp={this.handleMouseUp}
-				/>
+			<div
+				className={className}
+				onMouseEnter={this.handleMouseEnter}
+				onMouseLeave={this.handleMouseExit}
+				onMouseDown={this.handleMouseDown}
+				onMouseUp={this.handleMouseUp}
+				style={style}
+			>
+				{this.props.value}
 			</div>
 		);
 	}

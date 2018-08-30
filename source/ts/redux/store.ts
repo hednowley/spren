@@ -7,4 +7,5 @@ export interface Cell {
 export interface Store {
 	cells: { [id: string]: Cell };
 	selected: string[];
+	hovered: string
 };

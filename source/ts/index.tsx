@@ -1,14 +1,16 @@
 import { App } from "./components/app";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { reducer } from "./redux/reducer";
 import { Store } from "./redux/store";
+import thunk from 'redux-thunk';
 
 const initialStore: Store = {
 	cells: {},
-	selected: []
+	selected: [],
+	hovered: null
 };
 
 for (let i = 0; i < 10; i++) {
@@ -21,7 +23,7 @@ for (let i = 0; i < 10; i++) {
 	}
 }
 
-const store = createStore(reducer, initialStore);
+const store = createStore(reducer, initialStore, applyMiddleware(thunk));
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -4,7 +4,7 @@ import { ActionTypeKeys } from "./actionTypes";
 
 const getId = (coordinate: number[]) => coordinate.join(".");
 
-export const reducer = (store: Store, action: AllActions) => {
+export const reducer = (store: Store, action: AllActions): Store => {
 	switch (action.type) {
 		case ActionTypeKeys.NEW_CELL_VALUE:
 
@@ -38,6 +38,12 @@ export const reducer = (store: Store, action: AllActions) => {
 			return {
 				...store,
 				selected: selectedCopy
+			};
+
+		case ActionTypeKeys.HOVER_CELL:
+			return {
+				...store,
+				hovered: action.id
 			};
 	}
 

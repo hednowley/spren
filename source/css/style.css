@@ -12,6 +12,10 @@
 	font-size: 20px;
 }
 
+.hovered {
+	background-color: blue
+}
+
 .selected {
 	background-color: red
 }

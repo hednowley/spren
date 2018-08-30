@@ -1,4 +1,4 @@
-import { NewCellValueAction, ToggleSelectCellAction } from "./actions";
+import { NewCellValueAction, ToggleSelectCellAction, HoverCellAction } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
 export const createNewCellValueAction = (
@@ -14,3 +14,9 @@ export const createToggleSelectCellAction = (id: string): ToggleSelectCellAction
 	type: ActionTypeKeys.TOGGLE_SELECT_CELL,
 	id: id
 });
+
+export const createHoverCellAction = (id: string): HoverCellAction => ({
+	type: ActionTypeKeys.HOVER_CELL,
+	id: id
+});
+

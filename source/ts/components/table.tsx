@@ -12,6 +12,7 @@ interface Props {
 		value: string;
 		id: string;
 	}[];
+	hovered: string
 }
 
 class TableComponent extends React.Component<Props> {
@@ -29,7 +30,8 @@ class TableComponent extends React.Component<Props> {
 					value={c.value}
 					id={c.id}
 					key={c.id}
-					selected={this.props.selected.some(id => id == c.id)} />)}
+					selected={this.props.selected.some(id => id == c.id)}
+					hovered={this.props.hovered == c.id} />)}
 			</div>
 		);
 	}
@@ -42,7 +44,8 @@ const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
 			value: state.cells[key].value,
 			id: key
 		})),
-		selected: state.selected
+		selected: state.selected,
+		hovered: state.hovered
 	};
 };
 

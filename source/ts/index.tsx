@@ -8,14 +8,20 @@ import { Store } from "./redux/store";
 import thunk from 'redux-thunk';
 
 const initialStore: Store = {
-	cells: {},
-	selected: [],
-	hovered: null
+	Cells: {},
+	Selection: {
+		Contents: [],
+		End: null,
+		Start: null,
+		InProgress: false
+	},
+	CurrentCell: null,
+	MouseIsDown: false
 };
 
 for (let i = 0; i < 10; i++) {
 	for (let j = 0; j < 5; j++) {
-		initialStore.cells[`${i}.${j}`] = {
+		initialStore.Cells[`${i}.${j}`] = {
 			id: `${i}.${j}`,
 			coordinate: [i, j],
 			value: `value_${i}_${j}`

@@ -16,6 +16,7 @@ const initialStore: Store = {
 		Start: null,
 		InProgress: false
 	},
+	EditingCell: null,
 	CurrentCell: null,
 	MouseIsDown: false
 };

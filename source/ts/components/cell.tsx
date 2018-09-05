@@ -17,6 +17,7 @@ interface ReduxProps {
 	coordinate: number[];
 	value: string;
 	selected: boolean;
+	editing: boolean;
 }
 
 interface DispatchProps {
@@ -28,7 +29,7 @@ interface DispatchProps {
 }
 
 interface State {
-	isHovered: boolean;
+	isHovered: boolean
 }
 
 class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, State> {
@@ -87,7 +88,7 @@ class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, 
 				onMouseUp={this.handleMouseUp}
 				style={style}
 			>
-				{this.props.value}
+			{this.props.editing ? <input className="cell-editing"/> : <div className="cell-contents">{this.props.value}</div>}
 			</div>
 		);
 	}
@@ -98,7 +99,8 @@ const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownPr
 	return {
 		coordinate: reduxCell.coordinate,
 		value: reduxCell.value,
-		selected: store.Selection.Contents.some(id => id == ownProps.id)
+		selected: store.Selection.Contents.some(id => id == ownProps.id),
+		editing: store.EditingCell == ownProps.id
 	}
 };
 

@@ -16,5 +16,6 @@ export interface Store {
 	CellIds: string[];
 	Selection: Selection
 	CurrentCell: string,
+	EditingCell: string,
 	MouseIsDown: boolean
 };

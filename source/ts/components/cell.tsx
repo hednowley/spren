@@ -6,7 +6,8 @@ import {
 	createMouseEnterCellAction,
 	createMouseExitCellAction,
 	createMouseDownAction,
-	createMouseUpAction
+	createMouseUpAction,
+	createValueChangedAction
 } from "../redux/actionCreators";
 
 interface Props {
@@ -26,6 +27,7 @@ interface DispatchProps {
 	onMouseExit: () => void;
 	onMouseDown: () => void;
 	onMouseUp: () => void;
+	onValueChanged: (value: string) => void;
 }
 
 interface State {
@@ -63,6 +65,10 @@ class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, 
 		this.props.onMouseUp();
 	};
 
+	private handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		this.props.onValueChanged(event.target.value);
+	}
+
 	render() {
 		const style: React.CSSProperties = {
 			gridColumn: this.props.coordinate[1] + 1,
@@ -88,7 +94,7 @@ class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, 
 				onMouseUp={this.handleMouseUp}
 				style={style}
 			>
-			{this.props.editing ? <input className="cell-editing"/> : <div className="cell-contents">{this.props.value}</div>}
+			{this.props.editing ? <input value={this.props.value} className="cell-editing" onChange={this.handleValueChange}/> : <div className="cell-contents">{this.props.value}</div>}
 			</div>
 		);
 	}
@@ -110,7 +116,8 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, Props & ReduxProps> 
 	onMouseEnter: () => dispatch(createMouseEnterCellAction(ownProps.id)),
 	onMouseExit: () => dispatch(createMouseExitCellAction(ownProps.id)),
 	onMouseDown: () => dispatch(createMouseDownAction(ownProps.id)),
-	onMouseUp: () => dispatch(createMouseUpAction(ownProps.id))
+	onMouseUp: () => dispatch(createMouseUpAction(ownProps.id)),
+	onValueChanged: value => dispatch(createValueChangedAction(value, ownProps.id)),
 });
 
 export const Cell = connect<ReduxProps, DispatchProps, Props, Store>(

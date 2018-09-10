@@ -90,8 +90,21 @@ export const reducer = (store: Store, action: AllActions): Store => {
 					}
 				};
 			}
-			
+
 			return store;
+		}
+
+		case ActionTypeKeys.VALUE_CHANGED: {
+			return {
+				...store,
+				Cells: {
+					...store.Cells,
+					[action.id]: {
+						...store.Cells[action.id],
+						value: action.value
+					}
+				}
+			};
 		}
 	}
 

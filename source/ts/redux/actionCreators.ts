@@ -1,4 +1,4 @@
-import { NewCellValueAction, MouseEnterCellAction, MouseExitCellAction, MouseDownAction, MouseUpAction } from "./actions";
+import { NewCellValueAction, MouseEnterCellAction, MouseExitCellAction, MouseDownAction, MouseUpAction, ValueChangedAction } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
 export const createNewCellValueAction = (
@@ -27,3 +27,10 @@ export const createMouseDownAction = (id: string): MouseDownAction => ({
 export const createMouseUpAction = (id: string): MouseUpAction => ({
 	type: ActionTypeKeys.MOUSE_UP,
 })
+
+export const createValueChangedAction = (value: string, id: string): ValueChangedAction => ({
+	type: ActionTypeKeys.VALUE_CHANGED,
+	id: id,
+	value: value
+})
+

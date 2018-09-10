@@ -7,6 +7,7 @@ export type AllActions =
 	| MouseExitCellAction
 	| MouseDownAction
 	| MouseUpAction
+	| ValueChangedAction
 
 export interface NewCellValueAction extends AnyAction {
 	readonly type: ActionTypeKeys.NEW_CELL_VALUE;
@@ -30,4 +31,10 @@ export interface MouseDownAction extends AnyAction {
 
 export interface MouseUpAction extends AnyAction {
 	readonly type: ActionTypeKeys.MOUSE_UP
+}
+
+export interface ValueChangedAction extends AnyAction {
+	readonly type: ActionTypeKeys.VALUE_CHANGED,
+	readonly id: string,
+	readonly value: string
 }

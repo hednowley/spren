@@ -70,7 +70,7 @@ export const reducer = (store: Store, action: AllActions): Store => {
 		case ActionTypeKeys.MOUSE_DOWN: {
 			return {
 				...store,
-				EditingCell: store.CurrentCell,
+				FocusedCell: store.CurrentCell,
 				Selection: {
 					Start: store.CurrentCell,
 					End: store.CurrentCell,

@@ -27,6 +27,7 @@
 }
 
 .cell-editing {
+	background-color: rebeccapurple;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -48,4 +49,8 @@
 
 .selected {
 	background-color: #c6c6c6;
+}
+
+.focused {
+	background-color: aqua
 }

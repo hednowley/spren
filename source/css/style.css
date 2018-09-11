@@ -1,5 +1,9 @@
+body {
+	margin: 0;
+}
+
 .table {
-	margin: 20px;
+	padding: 20px;
 	width: fit-content;
 	grid-auto-columns: min-content;
 	border-style: solid;
@@ -41,10 +45,6 @@
 .cell-contents {
 	padding: 6px;
 	font-size: 12px
-}
-
-.hovered {
-	background-color: #efefef;
 }
 
 .selected {

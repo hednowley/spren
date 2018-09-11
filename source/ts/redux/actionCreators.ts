@@ -1,40 +1,6 @@
-import {
-	NewCellValueAction,
-	MouseEnterCellAction,
-	MouseExitCellAction,
-	MouseDownAction,
-	MouseUpAction,
-	ValueChangedAction,
-	KeyPressAction
-} from "./actions";
+import { ValueChangedAction } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
-
-export const createNewCellValueAction = (
-	coordinate: number[],
-	newValue: string
-): NewCellValueAction => ({
-	type: ActionTypeKeys.NEW_CELL_VALUE,
-	coordinate: coordinate,
-	newValue: newValue
-});
-
-export const createMouseEnterCellAction = (id: string): MouseEnterCellAction => ({
-	type: ActionTypeKeys.MOUSE_ENTER_CELL,
-	id: id
-});
-
-export const createMouseExitCellAction = (id: string): MouseExitCellAction => ({
-	type: ActionTypeKeys.MOUSE_EXIT_CELL,
-	id: id
-});
-
-export const createMouseDownAction = (id: string): MouseDownAction => ({
-	type: ActionTypeKeys.MOUSE_DOWN
-});
-
-export const createMouseUpAction = (id: string): MouseUpAction => ({
-	type: ActionTypeKeys.MOUSE_UP
-});
+import { ActionCreator, AnyAction } from "redux";
 
 export const createValueChangedAction = (value: string, id: string): ValueChangedAction => ({
 	type: ActionTypeKeys.VALUE_CHANGED,
@@ -42,7 +8,32 @@ export const createValueChangedAction = (value: string, id: string): ValueChange
 	value: value
 });
 
-export const createKeyPressAction = (key: string): KeyPressAction => ({
-	type: ActionTypeKeys.KEY_PRESS,
-	key: key
+export interface SetCurrentCellAction extends AnyAction {
+	readonly type: ActionTypeKeys.SET_CURRENT_CELL;
+	readonly id: string;
+}
+
+export const createSetCurrentCellAction: ActionCreator<SetCurrentCellAction> = (id: string) => ({
+	type: ActionTypeKeys.SET_CURRENT_CELL,
+	id: id
+});
+
+export interface SetFocusedCellAction extends AnyAction {
+	readonly type: ActionTypeKeys.SET_FOCUSED_CELL;
+	readonly id: string;
+}
+
+export const createSetFocusedCellAction: ActionCreator<SetFocusedCellAction> = (id: string) => ({
+	type: ActionTypeKeys.SET_FOCUSED_CELL,
+	id: id
+});
+
+export interface SetCellSelectionAction extends AnyAction {
+	readonly type: ActionTypeKeys.SET_CELL_SELECTION;
+	readonly id: string;
+}
+
+export const createSetCellSelectionAction: ActionCreator<SetCellSelectionAction> = (cells: string[]) => ({
+	type: ActionTypeKeys.SET_CELL_SELECTION,
+	id: id
 });

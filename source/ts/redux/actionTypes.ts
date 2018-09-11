@@ -4,5 +4,6 @@ export enum ActionTypeKeys {
 	MOUSE_EXIT_CELL,
 	MOUSE_DOWN,
 	MOUSE_UP,
-	VALUE_CHANGED
+	VALUE_CHANGED,
+	KEY_PRESS
 }

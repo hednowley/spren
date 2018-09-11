@@ -1,4 +1,3 @@
-import * as React from "react";
 import { MapDispatchToProps, connect, MapStateToProps } from "react-redux";
 import { Store } from "../redux/store";
 import {
@@ -9,6 +8,7 @@ import {
 	createMouseUpAction,
 	createValueChangedAction
 } from "../redux/actionCreators";
+import * as React from "react";
 
 interface Props {
 	id: string;
@@ -18,6 +18,7 @@ interface ReduxProps {
 	coordinate: number[];
 	value: string;
 	selected: boolean;
+	focused: boolean;
 	editing: boolean;
 }
 
@@ -81,6 +82,10 @@ class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, 
 			className += " selected";
 		}
 
+		if (this.props.focused) {
+			className += " focused";
+		}
+
 		if (this.state.isHovered) {
 			className += " hovered";
 		}
@@ -94,7 +99,7 @@ class CellComponent extends React.Component<Props & DispatchProps & ReduxProps, 
 				onMouseUp={this.handleMouseUp}
 				style={style}
 			>
-			{this.props.editing ? <input value={this.props.value} className="cell-editing" onChange={this.handleValueChange}/> : <div className="cell-contents">{this.props.value}</div>}
+			<div className="cell-contents">{this.props.value}</div>
 			</div>
 		);
 	}
@@ -106,7 +111,8 @@ const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownPr
 		coordinate: reduxCell.coordinate,
 		value: reduxCell.value,
 		selected: store.Selection.Contents.some(id => id == ownProps.id),
-		editing: store.EditingCell == ownProps.id
+		editing: store.EditingCell == ownProps.id,
+		focused: store.FocusedCell == ownProps.id,
 	}
 };
 

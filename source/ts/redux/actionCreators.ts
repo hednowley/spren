@@ -1,4 +1,12 @@
-import { NewCellValueAction, MouseEnterCellAction, MouseExitCellAction, MouseDownAction, MouseUpAction, ValueChangedAction } from "./actions";
+import {
+	NewCellValueAction,
+	MouseEnterCellAction,
+	MouseExitCellAction,
+	MouseDownAction,
+	MouseUpAction,
+	ValueChangedAction,
+	KeyPressAction
+} from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
 export const createNewCellValueAction = (
@@ -18,19 +26,23 @@ export const createMouseEnterCellAction = (id: string): MouseEnterCellAction => 
 export const createMouseExitCellAction = (id: string): MouseExitCellAction => ({
 	type: ActionTypeKeys.MOUSE_EXIT_CELL,
 	id: id
-})
+});
 
 export const createMouseDownAction = (id: string): MouseDownAction => ({
-	type: ActionTypeKeys.MOUSE_DOWN,
-})
+	type: ActionTypeKeys.MOUSE_DOWN
+});
 
 export const createMouseUpAction = (id: string): MouseUpAction => ({
-	type: ActionTypeKeys.MOUSE_UP,
-})
+	type: ActionTypeKeys.MOUSE_UP
+});
 
 export const createValueChangedAction = (value: string, id: string): ValueChangedAction => ({
 	type: ActionTypeKeys.VALUE_CHANGED,
 	id: id,
 	value: value
-})
+});
 
+export const createKeyPressAction = (key: string): KeyPressAction => ({
+	type: ActionTypeKeys.KEY_PRESS,
+	key: key
+});

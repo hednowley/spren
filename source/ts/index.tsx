@@ -17,6 +17,7 @@ const initialStore: Store = {
 		InProgress: false
 	},
 	EditingCell: null,
+	FocusedCell: null,
 	CurrentCell: null,
 	MouseIsDown: false
 };

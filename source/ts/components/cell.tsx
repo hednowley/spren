@@ -11,7 +11,6 @@ interface Props {
 interface ReduxProps {
 	coordinate: number[];
 	value: string;
-	selected: boolean;
 	focused: boolean;
 	editing: boolean;
 }
@@ -23,21 +22,14 @@ interface DispatchProps {
 }
 
 class CellComponent extends React.Component<Props & DispatchProps & ReduxProps> {
-	constructor(props: Props & DispatchProps & ReduxProps) {
-		super(props);
-	}
 
 	render() {
 		const style: React.CSSProperties = {
-			gridColumn: this.props.coordinate[1] + 1,
-			gridRow: this.props.coordinate[0] + 1
+			gridColumn: this.props.coordinate[1] + 1, // Make space for the row name
+			gridRow: this.props.coordinate[0] + 1 // Make space for the column header
 		};
 
 		let className = "table-cell";
-
-		if (this.props.selected) {
-			className += " selected";
-		}
 
 		if (this.props.focused) {
 			className += " focused";
@@ -61,7 +53,6 @@ const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownPr
 	return {
 		coordinate: reduxCell.coordinate,
 		value: reduxCell.value,
-		selected: store.Selection.Contents.some(id => id == ownProps.id),
 		editing: store.EditingCell == ownProps.id,
 		focused: store.FocusedCell == ownProps.id
 	};

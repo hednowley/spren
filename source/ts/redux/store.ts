@@ -4,19 +4,13 @@ export interface Cell {
 	value: string;
 }
 
-export interface Selection {
-	Start: string,
-	End: string,
-	Contents: string[],
-	InProgress: boolean
-}
-
 export interface Store {
 	Cells: { [id: string]: Cell };
 	CellIds: string[];
-	Selection: Selection
 	CurrentCell: string,
 	EditingCell: string,
 	FocusedCell: string,
-	MouseIsDown: boolean
+	MouseIsDown: boolean,
+	MaxColumn: number,
+	MaxRow: number
 };

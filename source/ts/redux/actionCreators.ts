@@ -27,13 +27,3 @@ export const createSetFocusedCellAction: ActionCreator<SetFocusedCellAction> = (
 	type: ActionTypeKeys.SET_FOCUSED_CELL,
 	id: id
 });
-
-export interface SetCellSelectionAction extends AnyAction {
-	readonly type: ActionTypeKeys.SET_CELL_SELECTION;
-	readonly id: string;
-}
-
-export const createSetCellSelectionAction: ActionCreator<SetCellSelectionAction> = (cells: string[]) => ({
-	type: ActionTypeKeys.SET_CELL_SELECTION,
-	id: id
-});

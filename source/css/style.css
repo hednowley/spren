@@ -15,6 +15,38 @@ body {
 
 }
 
+.column-header {
+	background-color: #E6E6E6;
+	color: #252526;
+	font-size: 13px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+	width: 105px;
+	height: 26px;
+	text-align: center;
+}
+
+.row-header {
+	background-color: #E6E6E6;
+	color: #252526;
+	font-size: 13px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+	width: 55px;
+	height: 26px;
+	text-align: center;
+}
+
 .table-cell {
 	background-color: #fff;
 	color: #252526;

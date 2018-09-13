@@ -10,7 +10,7 @@ interface ReduxProps {
 	focused: boolean
 }
 
-export class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
+class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
 	render() {
 		const style: React.CSSProperties = {
 			gridColumn: this.props.column + 1,

@@ -14,8 +14,8 @@ export class Cell extends React.Component<Props> {
 
 	render() {
 		const style: React.CSSProperties = {
-			gridColumn: this.props.coordinate[1] + 1, // Make space for the row name
-			gridRow: this.props.coordinate[0] + 1 // Make space for the column header
+			gridColumn: this.props.coordinate[0] + 1, // Make space for the row name
+			gridRow: this.props.coordinate[1] + 1 // Make space for the column header
 		};
 
 		return (

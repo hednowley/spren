@@ -4,6 +4,7 @@ import { connect, MapDispatchToProps } from "react-redux";
 import { Store } from "../redux/store";
 import { createKeyDownThunk } from "../redux/keyboard";
 import { createMouseDownThunk, createMouseUpThunk } from "../redux/mouse";
+import { AxisPanel } from "./axisPanel";
 
 interface DispatchProps {
 	onKeyPress: (key: string) => void;
@@ -19,8 +20,11 @@ export class AppComponent extends React.Component<DispatchProps> {
 
 	render() {
 		return (
-			<div tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
-				<Table />
+			<div>
+				<div tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
+					<Table />
+				</div>
+				<AxisPanel />
 			</div>
 		);
 	}

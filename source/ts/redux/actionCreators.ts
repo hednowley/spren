@@ -27,3 +27,13 @@ export const createSetFocusedCellAction: ActionCreator<SetFocusedCellAction> = (
 	type: ActionTypeKeys.SET_FOCUSED_CELL,
 	id: id
 });
+
+export interface SetColumnAction extends AnyAction {
+	type: ActionTypeKeys.SET_COLUMN,
+	readonly axis: number;
+}
+
+export const createSetColumnAction: ActionCreator<SetColumnAction> = (axis: number) => ({
+	type: ActionTypeKeys.SET_COLUMN,
+	axis: axis
+});

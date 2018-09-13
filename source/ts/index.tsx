@@ -15,8 +15,8 @@ const initialStore: Store = {
 	FocusedCell: null,
 	CurrentCell: null,
 	MouseIsDown: false,
-	MaxColumn: 30,
-	MaxRow: 80,
+	MaxColumn: 20,
+	MaxRow: 50,
 	Axes: [
 		{
 			IsColumn: true,
@@ -36,9 +36,9 @@ const initialStore: Store = {
 	]
 };
 
-for (let i = 1; i <= 100; i++) {
-	for (let j = 1; j <= 100; j++) {
-		for (let k = 1; k <= 100; k++) {
+for (let i = 1; i <= 50; i++) {
+	for (let j = 1; j <= 50; j++) {
+		for (let k = 1; k <= 30; k++) {
 			const key = `${i}.${j}.${k}`;
 			initialStore.Cells[key] = {
 				id: key,

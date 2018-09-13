@@ -5,41 +5,8 @@ import { createSetCurrentCellAction, createSetFocusedCellAction } from "./action
 
 export const createMouseEnterCellThunk: ActionCreator<ThunkAction<void, Store, {}, AnyAction>> = (
 	cell: string
-) => (dispatch, getStore) => {
+) => dispatch => {
 	dispatch(createSetCurrentCellAction(cell));
-
-	const store = getStore();
-	if (store.Selection.InProgress) {
-		const startCell = store.Cells[store.Selection.Start];
-		const endCell = store.Cells[cell];
-
-		const top = Math.min(startCell.coordinate[0], endCell.coordinate[0]);
-		const bottom = Math.max(startCell.coordinate[0], endCell.coordinate[0]);
-		const left = Math.min(startCell.coordinate[1], endCell.coordinate[1]);
-		const right = Math.max(startCell.coordinate[1], endCell.coordinate[1]);
-
-		const others = Object.keys(store.Cells).filter(key => {
-			const cell = store.Cells[key];
-			return (
-				cell.coordinate[0] >= top &&
-				cell.coordinate[0] <= bottom &&
-				cell.coordinate[1] >= left &&
-				cell.coordinate[1] <= right
-			);
-		});
-
-		/*
-		return {
-			...store,
-			CurrentCell: action.id,
-			Selection: {
-				...store.Selection,
-				End: endCell.id,
-				Contents: others
-			}
-		};
-		*/
-	}
 };
 
 export const createMouseExitCellThunk: ActionCreator<

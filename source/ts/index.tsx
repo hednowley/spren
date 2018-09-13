@@ -10,20 +10,16 @@ import thunk from 'redux-thunk';
 const initialStore: Store = {
 	Cells: {},
 	CellIds: [],
-	Selection: {
-		Contents: [],
-		End: null,
-		Start: null,
-		InProgress: false
-	},
 	EditingCell: null,
 	FocusedCell: null,
 	CurrentCell: null,
-	MouseIsDown: false
+	MouseIsDown: false,
+	MaxColumn: 50,
+	MaxRow: 50
 };
 
-for (let i = 0; i < 100; i++) {
-	for (let j = 0; j < 50; j++) {
+for (let i = 1; i < 100; i++) {
+	for (let j = 1; j < 50; j++) {
 		const key = `${i}.${j}`;
 		initialStore.Cells[key] = {
 			id: key,

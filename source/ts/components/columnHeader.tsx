@@ -35,7 +35,7 @@ class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
 
 const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownProps) => {
 	return {
-		focused: store.FocusedCell != null && store.Layout.find(c => c.id == store.FocusedCell).coordinate[1] == ownProps.column
+		focused: store.FocusedCell != null && store.Layout.find(c => c.id == store.FocusedCell).coordinate[0] == ownProps.column
 	};
 };
 

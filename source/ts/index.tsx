@@ -15,8 +15,8 @@ const initialStore: Store = {
 	FocusedCell: null,
 	CurrentCell: null,
 	MouseIsDown: false,
-	MaxColumn: 50,
-	MaxRow: 50
+	MaxColumn: 30,
+	MaxRow: 80
 };
 
 for (let i = 1; i < 100; i++) {

@@ -3,12 +3,15 @@ import { connect, MapStateToProps } from "react-redux";
 import { Store } from "../redux/store";
 
 import "../../css/style.css";
-import { Cell } from "./cell";
 import { ColumnHeader } from "./columnHeader";
 import { RowHeader } from "./rowHeader";
+import { Cell } from "./cell";
 
 interface Props {
-	cellIds: string[];
+	layout: {
+		coordinate: number[];
+		id: string;
+	}[];
 	maxColumn: number;
 	maxRow: number
 }
@@ -27,8 +30,9 @@ class TableComponent extends React.Component<Props> {
 				{Array.from(new Array(this.props.maxRow), (val, index) => index + 1)
 					.map(i => <RowHeader row={i} />)
 				}
-				{this.props.cellIds.map(id => (
-					<Cell id={id} key={id} />
+				{this.props.layout.filter(cell => cell.coordinate[0] <= this.props.maxColumn && cell.coordinate[1] <= this.props.maxRow)
+					.map(cell => (
+					<Cell id={cell.id} key={cell.id} coordinate={cell.coordinate} />
 				))}
 			</div>
 		);
@@ -37,7 +41,7 @@ class TableComponent extends React.Component<Props> {
 
 const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
 	return {
-		cellIds: state.CellIds,
+		layout: state.Layout,
 		maxColumn: state.MaxColumn,
 		maxRow: state.MaxRow
 	};

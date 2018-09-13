@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 const initialStore: Store = {
 	Cells: {},
 	CellIds: [],
+	Layout: [],
 	EditingCell: null,
 	FocusedCell: null,
 	CurrentCell: null,
@@ -19,14 +20,17 @@ const initialStore: Store = {
 };
 
 for (let i = 1; i < 100; i++) {
-	for (let j = 1; j < 50; j++) {
+	for (let j = 1; j < 100; j++) {
 		const key = `${i}.${j}`;
 		initialStore.Cells[key] = {
 			id: key,
-			coordinate: [i, j],
 			value: ""
 		};
 		initialStore.CellIds.push(key);
+		initialStore.Layout.push({
+			coordinate: [i, j],
+			id: key
+		});
 	}
 }
 

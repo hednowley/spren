@@ -1,12 +1,15 @@
 export interface Cell {
 	id: string;
-	coordinate: number[];
 	value: string;
 }
 
 export interface Store {
 	Cells: { [id: string]: Cell };
 	CellIds: string[];
+	Layout: {
+		coordinate: number[];
+		id: string
+	}[],
 	CurrentCell: string,
 	EditingCell: string,
 	FocusedCell: string,

@@ -3,7 +3,6 @@ body {
 }
 
 .table {
-	padding: 20px;
 	width: fit-content;
 	grid-auto-columns: min-content;
 	border-style: solid;

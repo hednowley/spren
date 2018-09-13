@@ -7,7 +7,7 @@ interface Props {
 }
 
 interface ReduxProps {
-	focused: boolean
+	focused: boolean;
 }
 
 class RowHeaderComponent extends React.Component<Props & ReduxProps> {
@@ -23,10 +23,7 @@ class RowHeaderComponent extends React.Component<Props & ReduxProps> {
 		}
 
 		return (
-			<div
-				className={className}
-				style={style}
-			>
+			<div className={className} style={style}>
 				{this.props.row}
 			</div>
 		);
@@ -35,10 +32,10 @@ class RowHeaderComponent extends React.Component<Props & ReduxProps> {
 
 const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownProps) => {
 	return {
-		focused: store.FocusedCell != null && store.Layout.find(c => c.id == store.FocusedCell).coordinate[1] == ownProps.row
+		focused:
+			store.FocusedCell != null &&
+			store.Layout.find(c => c.id == store.FocusedCell).row == ownProps.row
 	};
 };
 
-export const RowHeader = connect<ReduxProps, {}, Props, Store>(
-	mapStateToProps
-)(RowHeaderComponent);
+export const RowHeader = connect<ReduxProps, {}, Props, Store>(mapStateToProps)(RowHeaderComponent);

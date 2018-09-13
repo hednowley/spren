@@ -9,11 +9,12 @@ import { Cell } from "./cell";
 
 interface Props {
 	layout: {
-		coordinate: number[];
+		column: number;
+		row: number;
 		id: string;
 	}[];
 	maxColumn: number;
-	maxRow: number
+	maxRow: number;
 }
 
 class TableComponent extends React.Component<Props> {
@@ -24,16 +25,17 @@ class TableComponent extends React.Component<Props> {
 
 		return (
 			<div style={style} className="table">
-				{Array.from(new Array(this.props.maxColumn), (val, index) => index + 1)
-					.map(i => <ColumnHeader column={i} />)
-				}
-				{Array.from(new Array(this.props.maxRow), (val, index) => index + 1)
-					.map(i => <RowHeader row={i} />)
-				}
-				{this.props.layout.filter(cell => cell.coordinate[0] <= this.props.maxColumn && cell.coordinate[1] <= this.props.maxRow)
-					.map(cell => (
-					<Cell id={cell.id} key={cell.id} coordinate={cell.coordinate} />
+				{Array.from(new Array(this.props.maxColumn), (val, index) => index + 1).map(i => (
+					<ColumnHeader column={i} />
 				))}
+				{Array.from(new Array(this.props.maxRow), (val, index) => index + 1).map(i => (
+					<RowHeader row={i} />
+				))}
+				{this.props.layout
+					.filter(cell => cell.column <= this.props.maxColumn && cell.row <= this.props.maxRow)
+					.map(cell => (
+						<Cell id={cell.id} key={cell.id} column={cell.column} row={cell.row} />
+					))}
 			</div>
 		);
 	}

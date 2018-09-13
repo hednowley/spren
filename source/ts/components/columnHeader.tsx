@@ -7,7 +7,7 @@ interface Props {
 }
 
 interface ReduxProps {
-	focused: boolean
+	focused: boolean;
 }
 
 class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
@@ -23,10 +23,7 @@ class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
 		}
 
 		return (
-			<div
-				className={className}
-				style={style}
-			>
+			<div className={className} style={style}>
 				{this.props.column}
 			</div>
 		);
@@ -35,10 +32,12 @@ class ColumnHeaderComponent extends React.Component<Props & ReduxProps> {
 
 const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownProps) => {
 	return {
-		focused: store.FocusedCell != null && store.Layout.find(c => c.id == store.FocusedCell).coordinate[0] == ownProps.column
+		focused:
+			store.FocusedCell != null &&
+			store.Layout.find(c => c.id == store.FocusedCell).column == ownProps.column
 	};
 };
 
-export const ColumnHeader = connect<ReduxProps, {}, Props, Store>(
-	mapStateToProps
-)(ColumnHeaderComponent);
+export const ColumnHeader = connect<ReduxProps, {}, Props, Store>(mapStateToProps)(
+	ColumnHeaderComponent
+);

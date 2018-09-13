@@ -1,19 +1,30 @@
 import * as React from "react";
+import { MapStateToProps, connect } from "react-redux";
+import { Store } from "../redux/store";
 
 interface Props {
 	row: number;
 }
 
-export class RowHeader extends React.Component<Props> {
+interface ReduxProps {
+	focused: boolean
+}
+
+class RowHeaderComponent extends React.Component<Props & ReduxProps> {
 	render() {
 		const style: React.CSSProperties = {
 			gridColumn: 1,
 			gridRow: this.props.row + 1
 		};
 
+		var className = "row-header";
+		if (this.props.focused) {
+			className += " focused";
+		}
+
 		return (
 			<div
-				className="row-header"
+				className={className}
 				style={style}
 			>
 				{this.props.row}
@@ -21,3 +32,13 @@ export class RowHeader extends React.Component<Props> {
 		);
 	}
 }
+
+const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownProps) => {
+	return {
+		focused: store.FocusedCell != null && store.Layout.find(c => c.id == store.FocusedCell).coordinate[0] == ownProps.row
+	};
+};
+
+export const RowHeader = connect<ReduxProps, {}, Props, Store>(
+	mapStateToProps
+)(RowHeaderComponent);

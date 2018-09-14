@@ -26,10 +26,10 @@ class TableComponent extends React.Component<Props> {
 		return (
 			<div style={style} className="table">
 				{Array.from(new Array(this.props.maxColumn), (val, index) => index + 1).map(i => (
-					<ColumnHeader column={i} />
+					<ColumnHeader column={i} key={i}/>
 				))}
 				{Array.from(new Array(this.props.maxRow), (val, index) => index + 1).map(i => (
-					<RowHeader row={i} />
+					<RowHeader row={i} key={i}/>
 				))}
 				{this.props.layout
 					.filter(cell => cell.column <= this.props.maxColumn && cell.row <= this.props.maxRow)

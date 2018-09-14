@@ -19,10 +19,18 @@ export class AppComponent extends React.Component<DispatchProps> {
 	};
 
 	render() {
+
+		const style: React.CSSProperties = {
+			height: "100%"
+		}
+
 		return (
-			<div>
-				<div tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
-					<Table />
+			<div style={style}>
+				<div className="table-container" tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
+					<Table layoutIndex={0} />
+				</div>
+				<div className="table-container" tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
+					<Table layoutIndex={1} />
 				</div>
 				<AxisPanel />
 			</div>

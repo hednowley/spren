@@ -8,7 +8,11 @@ import { RowHeader } from "./rowHeader";
 import { Cell } from "./cell";
 
 interface Props {
-	layout: {
+	layoutIndex: number;
+}
+
+interface ReduxProps {
+	cells: {
 		column: number;
 		row: number;
 		id: string;
@@ -17,7 +21,7 @@ interface Props {
 	maxRow: number;
 }
 
-class TableComponent extends React.Component<Props> {
+class TableComponent extends React.Component<ReduxProps & Props> {
 	render() {
 		const style: React.CSSProperties = {
 			display: "grid"
@@ -26,12 +30,12 @@ class TableComponent extends React.Component<Props> {
 		return (
 			<div style={style} className="table">
 				{Array.from(new Array(this.props.maxColumn), (val, index) => index + 1).map(i => (
-					<ColumnHeader column={i} key={i}/>
+					<ColumnHeader column={i} key={i} layout={this.props.layoutIndex} />
 				))}
 				{Array.from(new Array(this.props.maxRow), (val, index) => index + 1).map(i => (
-					<RowHeader row={i} key={i}/>
+					<RowHeader row={i} key={i} layout={this.props.layoutIndex} />
 				))}
-				{this.props.layout
+				{this.props.cells
 					.filter(cell => cell.column <= this.props.maxColumn && cell.row <= this.props.maxRow)
 					.map(cell => (
 						<Cell id={cell.id} key={cell.id} column={cell.column} row={cell.row} />
@@ -41,9 +45,12 @@ class TableComponent extends React.Component<Props> {
 	}
 }
 
-const mapStateToProps: MapStateToProps<Props, {}, Store> = (state: Store) => {
+const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (
+	state: Store,
+	ownProps: Props
+) => {
 	return {
-		layout: state.Layout,
+		cells: state.Layouts[ownProps.layoutIndex].cells,
 		maxColumn: state.MaxColumn,
 		maxRow: state.MaxRow
 	};

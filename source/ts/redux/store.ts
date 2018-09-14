@@ -5,23 +5,26 @@ export interface Cell {
 }
 
 export interface Layout {
+	columnAxis: number;
+	rowAxis: number;
+	index: number;
+	cells: CellLayout[];
+}
+
+export interface CellLayout {
 	column: number;
 	row: number;
 	id: string;
 }
-[];
 
 export interface Axis {
-	IsColumn: boolean;
-	IsRow: boolean;
-	Value: number;
 	Index: number;
 }
 
 export interface Store {
 	Cells: { [id: string]: Cell };
 	CellIds: string[];
-	Layout: Layout[];
+	Layouts: Layout[];
 	CurrentCell: string;
 	EditingCell: string;
 	FocusedCell: string;

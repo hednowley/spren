@@ -96,10 +96,11 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 		return;
 	}
 
-	const focusedLayout = getStore().Layout.find(cell => cell.id == focusedCell);
+	/*
+	const focusedLayout = getStore().Layouts.find(cell => cell.id == focusedCell);
 
 	if (key == "ArrowLeft") {
-		const targetCell = getStore().Layout.find(
+		const targetCell = getStore().Layouts.find(
 			cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column - 1
 		);
 		if (targetCell != null) {
@@ -108,7 +109,7 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	}
 
 	if (key == "ArrowRight" || key == "Tab") {
-		const targetCell = getStore().Layout.find(
+		const targetCell = getStore().Layouts.find(
 			cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column + 1
 		);
 		if (targetCell != null) {
@@ -117,7 +118,7 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	}
 
 	if (key == "ArrowDown") {
-		const targetCell = getStore().Layout.find(
+		const targetCell = getStore().Layouts.find(
 			cell => cell.row == focusedLayout.row + 1 && cell.column == focusedLayout.column
 		);
 		if (targetCell != null) {
@@ -126,11 +127,12 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	}
 
 	if (key == "ArrowUp") {
-		const targetCell = getStore().Layout.find(
+		const targetCell = getStore().Layouts.find(
 			cell => cell.row == focusedLayout.row - 1 && cell.column == focusedLayout.column
 		);
 		if (targetCell != null) {
 			dispatch(createSetFocusedCellAction(targetCell.id));
 		}
 	}
+	*/
 };

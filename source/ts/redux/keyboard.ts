@@ -1,12 +1,22 @@
 import { ThunkAction } from "redux-thunk";
 import { Store } from "./store";
 import { AnyAction, ActionCreator } from "redux";
-import { createValueChangedAction } from "./actionCreators";
+import { createValueChangedAction, createSetFocusedCellAction } from "./actionCreators";
 
 const literalKeys = [
 	" ",
 	".",
 	",",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"0",
 	"A",
 	"B",
 	"C",
@@ -84,5 +94,35 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	if (key == "Delete") {
 		dispatch(createValueChangedAction("", focusedCell));
 		return;
+	}
+
+	const focusedLayout = getStore().Layout.find(cell => cell.id == focusedCell);
+
+	if (key == "ArrowLeft") {
+		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column - 1);
+		if (targetCell != null) {
+			dispatch(createSetFocusedCellAction(targetCell.id));
+		}
+	}
+
+	if (key == "ArrowRight") {
+		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column + 1);
+		if (targetCell != null) {
+			dispatch(createSetFocusedCellAction(targetCell.id));
+		}
+	}
+
+	if (key == "ArrowDown") {
+		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row + 1 && cell.column == focusedLayout.column);
+		if (targetCell != null) {
+			dispatch(createSetFocusedCellAction(targetCell.id));
+		}
+	}
+
+	if (key == "ArrowUp") {
+		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row - 1 && cell.column == focusedLayout.column);
+		if (targetCell != null) {
+			dispatch(createSetFocusedCellAction(targetCell.id));
+		}
 	}
 };

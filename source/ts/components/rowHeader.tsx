@@ -4,6 +4,7 @@ import { Store } from "../redux/store";
 
 interface Props {
 	row: number;
+	layout: number;
 }
 
 interface ReduxProps {
@@ -34,7 +35,7 @@ const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownPr
 	return {
 		focused:
 			store.FocusedCell != null &&
-			store.Layout.find(c => c.id == store.FocusedCell).row == ownProps.row
+			store.Layouts[ownProps.layout].cells.find(c => c.id == store.FocusedCell).row == ownProps.row
 	};
 };
 

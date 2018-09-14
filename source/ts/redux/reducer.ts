@@ -1,4 +1,4 @@
-import { Store, Layout } from "./store";
+import { Store, Layout, CellLayout } from "./store";
 import { AllActions } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
@@ -12,15 +12,45 @@ export const reducer = (store: Store, action: AllActions): Store => {
 		}
 
 		case ActionTypeKeys.SET_FOCUSED_CELL: {
-			const cell = store.Cells[action.id];
+			const focusedCell = store.Cells[action.id];
+
+			const layouts: Layout[] = [];
+
+			for (const layout of store.Layouts) {
+				const hiddenAxes = store.Axes.filter(
+					axis => axis.Index != layout.columnAxis && axis.Index != layout.rowAxis
+				).map(axis => ({
+					Index: axis.Index,
+					FocusedValue: focusedCell.coordinate[axis.Index]
+				}));
+
+				const cells: CellLayout[] = [];
+
+				Object.keys(store.Cells).forEach(id => {
+					var cell = store.Cells[id];
+					var shouldShowCell = hiddenAxes.every(
+						axis => cell.coordinate[axis.Index] == axis.FocusedValue
+					);
+
+					if (shouldShowCell) {
+						cells.push({
+							column: cell.coordinate[layout.columnAxis],
+							row: cell.coordinate[layout.rowAxis],
+							id: cell.id
+						});
+					}
+				});
+
+				layouts.push({
+					...layout,
+					cells: cells
+				})
+			}
 
 			return {
 				...store,
 				FocusedCell: action.id,
-				Axes: store.Axes.map(axis => ({
-					...axis,
-					Value: cell.coordinate[axis.Index]
-				}))
+				Layouts: layouts
 			};
 		}
 
@@ -34,37 +64,6 @@ export const reducer = (store: Store, action: AllActions): Store => {
 						value: action.value
 					}
 				}
-			};
-		}
-
-		case ActionTypeKeys.SET_COLUMN: {
-			var newAxes = store.Axes.map(axis => ({
-				...axis,
-				IsColumn: axis.Index == action.axis
-			}));
-			var rowAxis = store.Axes.find(a => a.IsRow);
-
-			var layout: Layout[] = [];
-
-			Object.keys(store.Cells).forEach(id => {
-				var cell = store.Cells[id];
-				var shouldShowCell = newAxes.every(
-					(axis, index) => axis.IsColumn || axis.IsRow || cell.coordinate[index] == axis.Value
-				);
-
-				if (shouldShowCell) {
-					layout.push({
-						column: cell.coordinate[action.axis],
-						row: cell.coordinate[rowAxis.Index],
-						id: cell.id
-					});
-				}
-			});
-
-			return {
-				...store,
-				Axes: newAxes,
-				Layout: layout
 			};
 		}
 	}

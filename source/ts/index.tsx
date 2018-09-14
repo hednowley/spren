@@ -4,13 +4,13 @@ import * as ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { reducer } from "./redux/reducer";
-import { Store } from "./redux/store";
+import { Store, Layout } from "./redux/store";
 import thunk from "redux-thunk";
 
 const initialStore: Store = {
 	Cells: {},
 	CellIds: [],
-	Layout: [],
+	Layouts: [],
 	EditingCell: null,
 	FocusedCell: null,
 	CurrentCell: null,
@@ -19,21 +19,12 @@ const initialStore: Store = {
 	MaxRow: 50,
 	Axes: [
 		{
-			IsColumn: true,
-			IsRow: false,
-			Value: 1,
 			Index: 0
 		},
 		{
-			IsColumn: false,
-			IsRow: true,
-			Value: 1,
 			Index: 1
 		},
 		{
-			IsColumn: false,
-			IsRow: false,
-			Value: 1,
 			Index: 2
 		}
 	]
@@ -53,16 +44,44 @@ for (let i = 1; i <= 50; i++) {
 	}
 }
 
+const LayoutXY: Layout = {
+	cells: [],
+	columnAxis: 0,
+	rowAxis: 1,
+	index: 0
+}
+
+const LayoutZY: Layout = {
+	cells: [],
+	columnAxis: 2,
+	rowAxis: 1,
+	index: 1
+}
+
 Object.keys(initialStore.Cells).forEach(id => {
 	var cell = initialStore.Cells[id];
 	if (cell.coordinate[2] == 1) {
-		initialStore.Layout.push({
+		LayoutXY.cells.push({
 			column: cell.coordinate[0],
 			row: cell.coordinate[1],
 			id: id
 		});
 	}
 });
+
+Object.keys(initialStore.Cells).forEach(id => {
+	var cell = initialStore.Cells[id];
+	if (cell.coordinate[0] == 1) {
+		LayoutZY.cells.push({
+			column: cell.coordinate[2],
+			row: cell.coordinate[1],
+			id: id
+		});
+	}
+});
+
+initialStore.Layouts.push(LayoutXY);
+initialStore.Layouts.push(LayoutZY);
 
 const getCell = (x: number, y: number, z: number) => {
 	for (const id of Object.keys(initialStore.Cells)) {

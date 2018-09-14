@@ -2,7 +2,7 @@ import { MapDispatchToProps, connect, MapStateToProps } from "react-redux";
 import { Store } from "../redux/store";
 import { createValueChangedAction } from "../redux/actionCreators";
 import * as React from "react";
-import { createMouseEnterCellThunk, createMouseExitCellThunk, createMouseDownThunk } from "../redux/mouse";
+import { createMouseEnterCellThunk, createMouseExitCellThunk } from "../redux/mouse";
 
 interface Props {
 	id: string;

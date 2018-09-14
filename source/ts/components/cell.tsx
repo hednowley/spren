@@ -3,12 +3,11 @@ import { CellContent } from "./cellContent";
 
 interface Props {
 	id: string;
-	column: number,
-	row: number
+	column: number;
+	row: number;
 }
 
 export class Cell extends React.Component<Props> {
-
 	render() {
 		const style: React.CSSProperties = {
 			gridColumn: this.props.column + 1, // Make space for the row name
@@ -16,11 +15,8 @@ export class Cell extends React.Component<Props> {
 		};
 
 		return (
-			<div
-				className="table-cell"
-				style={style}
-			>
-				<CellContent id={this.props.id}/>
+			<div className="table-cell" style={style}>
+				<CellContent id={this.props.id} />
 			</div>
 		);
 	}

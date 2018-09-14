@@ -15,36 +15,17 @@ export const createMouseExitCellThunk: ActionCreator<
 	dispatch(createSetCurrentCellAction(null));
 };
 
-export const createMouseDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyAction>> = () => (dispatch, getStore) => {
-
+export const createMouseDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyAction>> = () => (
+	dispatch,
+	getStore
+) => {
 	const currentCell = getStore().CurrentCell;
 	if (currentCell != null) {
 		dispatch(createSetFocusedCellAction(currentCell));
 	}
-
-	
-
-	/*
-	Selection: {
-					Start: store.CurrentCell,
-					End: store.CurrentCell,
-					Contents: [],
-					InProgress: true
-				}
-				*/
 };
 
-export const createMouseUpThunk: ActionCreator<ThunkAction<void, Store, {}, AnyAction>> = () => (dispatch, getStore) => {
-
-	/*
-	if (store.Selection.InProgress) {
-				return {
-					...store,
-					Selection: {
-						...store.Selection,
-						InProgress: false
-					}
-				};
-			}
-				*/
-};
+export const createMouseUpThunk: ActionCreator<ThunkAction<void, Store, {}, AnyAction>> = () => (
+	dispatch,
+	getStore
+) => {};

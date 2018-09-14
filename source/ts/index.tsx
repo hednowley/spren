@@ -41,7 +41,7 @@ const initialStore: Store = {
 
 for (let i = 1; i <= 50; i++) {
 	for (let j = 1; j <= 50; j++) {
-		for (let k = 1; k <= 30; k++) {
+		for (let k = 1; k <= 50; k++) {
 			const key = `${i}.${j}.${k}`;
 			initialStore.Cells[key] = {
 				id: key,
@@ -73,10 +73,10 @@ const getCell = (x: number, y: number, z: number) => {
 	}
 };
 
-getCell(2, 1, 1).value = "A";
-getCell(3, 1, 1).value = "B";
-getCell(4, 1, 1).value = "C";
-getCell(5, 1, 1).value = "D";
+getCell(2, 1, 1).value = "Dept A";
+getCell(3, 1, 1).value = "Dept B";
+getCell(4, 1, 1).value = "Dept C";
+getCell(5, 1, 1).value = "Dept D";
 
 getCell(2, 2, 1).value = "1";
 getCell(3, 2, 1).value = "2";
@@ -93,14 +93,14 @@ getCell(3, 4, 1).value = "10";
 getCell(4, 4, 1).value = "11";
 getCell(5, 4, 1).value = "12";
 
-getCell(1, 2, 1).value = "a";
-getCell(1, 3, 1).value = "b";
-getCell(1, 4, 1).value = "c";
+getCell(1, 2, 1).value = "Item #1";
+getCell(1, 3, 1).value = "Item #2";
+getCell(1, 4, 1).value = "Item #3";
 
-getCell(1, 1, 2).value = "AA";
-getCell(1, 1, 3).value = "BB";
-getCell(1, 1, 4).value = "CC";
-getCell(1, 1, 5).value = "DD";
+getCell(1, 1, 2).value = "2014";
+getCell(1, 1, 3).value = "2015";
+getCell(1, 1, 4).value = "2016";
+getCell(1, 1, 5).value = "2017";
 
 const store = createStore(reducer, initialStore, applyMiddleware(thunk));
 

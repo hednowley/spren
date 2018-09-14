@@ -19,8 +19,7 @@ class AxisPanelComponent extends React.Component<ReduxProps & DispatchProps> {
 				{this.props.axes.map(axis => (
 					<div>
 						<span>{`Index:${axis.Index} Column:${axis.IsColumn} Row:${axis.IsRow} Value:${axis.Value}`}</span>
-						<button onClick={() => this.props.setColumn(axis.Index)}>C</button>
-						<button onClick={() => this.props.setRow(axis.Index)}>R</button>
+						<button onClick={() => this.props.setColumn(axis.Index)}>Set column</button>
 					</div>
 				))}
 			</div>

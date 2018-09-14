@@ -21,17 +21,20 @@ const initialStore: Store = {
 		{
 			IsColumn: true,
 			IsRow: false,
-			Value: 0
+			Value: 1,
+			Index: 1
 		},
 		{
 			IsColumn: false,
 			IsRow: true,
-			Value: 0
+			Value: 1,
+			Index: 2
 		},
 		{
 			IsColumn: false,
 			IsRow: false,
-			Value: 1
+			Value: 1,
+			Index: 3
 		}
 	]
 };

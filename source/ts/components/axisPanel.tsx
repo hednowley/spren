@@ -1,14 +1,10 @@
 import * as React from "react";
 import { MapStateToProps, connect, MapDispatchToProps } from "react-redux";
-import { Store } from "../redux/store";
+import { Store, Axis } from "../redux/store";
 import { createSetColumnAction } from "../redux/actionCreators";
 
 interface ReduxProps {
-	axes: {
-		IsColumn: boolean;
-		IsRow: boolean;
-		Value: number;
-	}[];
+	axes: Axis[];
 }
 
 interface DispatchProps {
@@ -20,11 +16,11 @@ class AxisPanelComponent extends React.Component<ReduxProps & DispatchProps> {
 	render() {
 		return (
 			<div className="axis-panel">
-				{this.props.axes.map((axis, index) => (
+				{this.props.axes.map(axis => (
 					<div>
-						<span>{`${index} ${axis.IsColumn} ${axis.IsRow}`}</span>
-						<button onClick={() => this.props.setColumn(index)}>C</button>
-						<button onClick={() => this.props.setRow(index)}>R</button>
+						<span>{`Index:${axis.Index} Column:${axis.IsColumn} Row:${axis.IsRow} Value:${axis.Value}`}</span>
+						<button onClick={() => this.props.setColumn(axis.Index)}>C</button>
+						<button onClick={() => this.props.setRow(axis.Index)}>R</button>
 					</div>
 				))}
 			</div>

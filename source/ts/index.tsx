@@ -92,29 +92,25 @@ const getCell = (x: number, y: number, z: number) => {
 	}
 };
 
-getCell(2, 1, 1).value = "Dept A";
-getCell(3, 1, 1).value = "Dept B";
-getCell(4, 1, 1).value = "Dept C";
-getCell(5, 1, 1).value = "Dept D";
+getCell(2, 1, 1).value = "Gold";
+getCell(3, 1, 1).value = "Silver";
+getCell(4, 1, 1).value = "Bronze";
 
-getCell(2, 2, 1).value = "1";
-getCell(3, 2, 1).value = "2";
-getCell(4, 2, 1).value = "3";
-getCell(5, 2, 1).value = "4";
+getCell(2, 2, 2).value = "46";
+getCell(3, 2, 2).value = "10";
+getCell(4, 2, 2).value = "58";
 
-getCell(2, 3, 1).value = "5";
-getCell(3, 3, 1).value = "6";
-getCell(4, 3, 1).value = "7";
-getCell(5, 3, 1).value = "8";
+getCell(2, 3, 2).value = "90";
+getCell(3, 3, 2).value = "20";
+getCell(4, 3, 2).value = "6";
 
-getCell(2, 4, 1).value = "9";
-getCell(3, 4, 1).value = "10";
-getCell(4, 4, 1).value = "11";
-getCell(5, 4, 1).value = "12";
+getCell(2, 4, 2).value = "20";
+getCell(3, 4, 2).value = "10";
+getCell(4, 4, 2).value = "100";
 
-getCell(1, 2, 1).value = "Item #1";
-getCell(1, 3, 1).value = "Item #2";
-getCell(1, 4, 1).value = "Item #3";
+getCell(1, 2, 1).value = "USA";
+getCell(1, 3, 1).value = "China";
+getCell(1, 4, 1).value = "GB";
 
 getCell(1, 1, 2).value = "2014";
 getCell(1, 1, 3).value = "2015";

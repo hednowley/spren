@@ -1,4 +1,4 @@
-import { Store } from "./store";
+import { Store, Layout } from "./store";
 import { AllActions } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
@@ -14,9 +14,16 @@ export const reducer = (store: Store, action: AllActions): Store => {
 		}
 
 		case ActionTypeKeys.SET_FOCUSED_CELL: {
+
+			const cell = store.Cells[action.id];
+
 			return {
 				...store,
-				FocusedCell: action.id
+				FocusedCell: action.id,
+				Axes: store.Axes.map(axis => ({
+					...axis,
+					Value: cell.coordinate[axis.Index]
+				}))
 			};
 		}
 
@@ -34,29 +41,33 @@ export const reducer = (store: Store, action: AllActions): Store => {
 		}
 
 		case ActionTypeKeys.SET_COLUMN: {
-
+			var newAxes = store.Axes.map(axis => ({
+				...axis,
+				IsColumn: axis.Index == action.axis
+			}));
 			var rowAxis = store.Axes.find(a => a.IsRow);
 
-			var layout: any[] = [];
+			var layout: Layout[] = [];
 
 			Object.keys(store.Cells).forEach(id => {
 				var cell = store.Cells[id];
-				if (cell.coordinate[2] == 1) {
+				var shouldShowCell = newAxes.every(
+					(axis, index) => axis.IsColumn || axis.IsRow || cell.coordinate[index] == axis.Value
+				);
+
+				if (shouldShowCell) {
 					layout.push({
-						column: cell.coordinate[0],
-						row: cell.coordinate[1],
-						id: id
+						column: cell.coordinate[action.axis],
+						row: cell.coordinate[rowAxis.Index],
+						id: cell.id
 					});
 				}
 			});
 
 			return {
 				...store,
-				Axes: store.Axes.map((axis, index) => ({
-					...axis,
-					IsColumn: index == action.axis
-				})),
-				Layout: store.Cells.filter(c => c.)
+				Axes: newAxes,
+				Layout: layout
 			};
 		}
 	}

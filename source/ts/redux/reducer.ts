@@ -12,7 +12,6 @@ export const reducer = (store: Store, action: AllActions): Store => {
 		}
 
 		case ActionTypeKeys.SET_FOCUSED_CELL: {
-
 			const cell = store.Cells[action.id];
 
 			return {

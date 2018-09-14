@@ -78,7 +78,7 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	if (focusedCell == null) {
 		return;
 	}
-	
+
 	const oldValue = getStore().Cells[focusedCell].value;
 
 	if (key.length == 1 && literalKeys.indexOf(key) > -1) {
@@ -99,28 +99,36 @@ export const createKeyDownThunk: ActionCreator<ThunkAction<void, Store, {}, AnyA
 	const focusedLayout = getStore().Layout.find(cell => cell.id == focusedCell);
 
 	if (key == "ArrowLeft") {
-		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column - 1);
+		const targetCell = getStore().Layout.find(
+			cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column - 1
+		);
 		if (targetCell != null) {
 			dispatch(createSetFocusedCellAction(targetCell.id));
 		}
 	}
 
-	if (key == "ArrowRight") {
-		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column + 1);
+	if (key == "ArrowRight" || key == "Tab") {
+		const targetCell = getStore().Layout.find(
+			cell => cell.row == focusedLayout.row && cell.column == focusedLayout.column + 1
+		);
 		if (targetCell != null) {
 			dispatch(createSetFocusedCellAction(targetCell.id));
 		}
 	}
 
 	if (key == "ArrowDown") {
-		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row + 1 && cell.column == focusedLayout.column);
+		const targetCell = getStore().Layout.find(
+			cell => cell.row == focusedLayout.row + 1 && cell.column == focusedLayout.column
+		);
 		if (targetCell != null) {
 			dispatch(createSetFocusedCellAction(targetCell.id));
 		}
 	}
 
 	if (key == "ArrowUp") {
-		const targetCell = getStore().Layout.find(cell => cell.row == focusedLayout.row - 1 && cell.column == focusedLayout.column);
+		const targetCell = getStore().Layout.find(
+			cell => cell.row == focusedLayout.row - 1 && cell.column == focusedLayout.column
+		);
 		if (targetCell != null) {
 			dispatch(createSetFocusedCellAction(targetCell.id));
 		}

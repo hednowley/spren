@@ -2,8 +2,6 @@ import { Store, Layout } from "./store";
 import { AllActions } from "./actions";
 import { ActionTypeKeys } from "./actionTypes";
 
-const getId = (coordinate: number[]) => coordinate.join(".");
-
 export const reducer = (store: Store, action: AllActions): Store => {
 	switch (action.type) {
 		case ActionTypeKeys.SET_CURRENT_CELL: {

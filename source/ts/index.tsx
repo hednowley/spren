@@ -15,8 +15,8 @@ const initialStore: Store = {
 	FocusedCell: null,
 	CurrentCell: null,
 	MouseIsDown: false,
-	MaxColumn: 20,
-	MaxRow: 50,
+	MaxColumn: 10,
+	MaxRow: 10,
 	Axes: [
 		{
 			Index: 0
@@ -27,12 +27,37 @@ const initialStore: Store = {
 		{
 			Index: 2
 		}
+	],
+	Regions: [
+		{
+			Id: "MyRegion",
+			Edges: [
+				{
+					Axis: 0,
+					Min: 4,
+					Max: 6,
+					Name: "Medal"
+				},
+				{
+					Axis: 1,
+					Min: 3,
+					Max: 5,
+					Name: "Country"
+				},
+				{
+					Axis: 2,
+					Min: 2,
+					Max: 5,
+					Name: "Year"
+				}
+			]
+		}
 	]
 };
 
-for (let i = 1; i <= 50; i++) {
-	for (let j = 1; j <= 50; j++) {
-		for (let k = 1; k <= 50; k++) {
+for (let i = 1; i <= 10; i++) {
+	for (let j = 1; j <= 10; j++) {
+		for (let k = 1; k <= 10; k++) {
 			const key = `${i}.${j}.${k}`;
 			initialStore.Cells[key] = {
 				id: key,
@@ -92,9 +117,9 @@ const getCell = (x: number, y: number, z: number) => {
 	}
 };
 
-getCell(2, 1, 1).value = "Gold";
-getCell(3, 1, 1).value = "Silver";
-getCell(4, 1, 1).value = "Bronze";
+getCell(4, 2, 1).value = "Gold";
+getCell(5, 2, 1).value = "Silver";
+getCell(6, 2, 1).value = "Bronze";
 
 getCell(2, 2, 2).value = "46";
 getCell(3, 2, 2).value = "10";
@@ -108,9 +133,9 @@ getCell(2, 4, 2).value = "20";
 getCell(3, 4, 2).value = "10";
 getCell(4, 4, 2).value = "100";
 
-getCell(1, 2, 1).value = "USA";
-getCell(1, 3, 1).value = "China";
-getCell(1, 4, 1).value = "GB";
+getCell(3, 3, 1).value = "USA";
+getCell(3, 4, 1).value = "China";
+getCell(3, 5, 1).value = "GB";
 
 getCell(1, 1, 2).value = "2014";
 getCell(1, 1, 3).value = "2015";

@@ -60,7 +60,7 @@ body {
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none;
-	width: 55px;
+	width: 30px;
 	height: 26px;
 	text-align: center;
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Table } from "./table";
-import { connect, MapDispatchToProps } from "react-redux";
-import { Store } from "../redux/store";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
+import { Store, Region } from "../redux/store";
 import { createKeyDownThunk } from "../redux/keyboard";
 import { createMouseDownThunk, createMouseUpThunk } from "../redux/mouse";
 import { AxisPanel } from "./axisPanel";
@@ -18,20 +18,28 @@ export class AppComponent extends React.Component<DispatchProps> {
 		event.preventDefault();
 	};
 
-	render() {
+	private getTable = (layout: number) => {
+		return (
+			<div
+				className="table-container"
+				tabIndex={0}
+				onKeyDown={this.handleKeyPress}
+				onMouseDown={this.props.onMouseDown}
+			>
+				<Table layoutIndex={layout} />
+			</div>
+		);
+	};
 
+	render() {
 		const style: React.CSSProperties = {
 			height: "100%"
-		}
+		};
 
 		return (
 			<div style={style}>
-				<div className="table-container" tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
-					<Table layoutIndex={0} />
-				</div>
-				<div className="table-container" tabIndex={0} onKeyDown={this.handleKeyPress} onMouseDown={this.props.onMouseDown}>
-					<Table layoutIndex={1} />
-				</div>
+				{this.getTable(0)}
+				{this.getTable(1)}
 				<AxisPanel />
 			</div>
 		);

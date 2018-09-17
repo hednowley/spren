@@ -41,6 +41,6 @@ const mapStateToProps: MapStateToProps<ReduxProps, Props, Store> = (store, ownPr
 	};
 };
 
-export const ColumnHeader = connect<ReduxProps, {}, Props, Store>(mapStateToProps)(
+export const RegionColumnHeader = connect<ReduxProps, {}, Props, Store>(mapStateToProps)(
 	ColumnHeaderComponent
 );

@@ -21,6 +21,18 @@ export interface Axis {
 	Index: number;
 }
 
+export interface Region {
+	Edges: RegionEdge[];
+	Id: String
+}
+
+export interface RegionEdge {
+	Axis: number;
+	Min: number;
+	Max: number;
+	Name: string;
+}
+
 export interface Store {
 	Cells: { [id: string]: Cell };
 	CellIds: string[];
@@ -32,4 +44,5 @@ export interface Store {
 	MaxColumn: number;
 	MaxRow: number;
 	Axes: Axis[];
+	Regions: Region[];
 }

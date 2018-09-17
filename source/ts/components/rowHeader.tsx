@@ -5,6 +5,7 @@ import { Store } from "../redux/store";
 interface Props {
 	row: number;
 	layout: number;
+	name: string;
 }
 
 interface ReduxProps {
@@ -25,7 +26,7 @@ class RowHeaderComponent extends React.Component<Props & ReduxProps> {
 
 		return (
 			<div className={className} style={style}>
-				{this.props.row}
+				{this.props.name}
 			</div>
 		);
 	}
